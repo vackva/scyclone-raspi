@@ -58,8 +58,8 @@ private:
     std::vector<float> onnxOutputData;
 
     juce::AudioBuffer<float> processedBuffer;
-    int maxModelCalcSize = 0;
-    int modelInputSize = 96000;
+    int maxModelCalcSize = 4096;
+    int modelInputSize = 96256;
     std::atomic<bool> inferenceEnabled {false};
     RingBuffer receiveRingBuffer;
 

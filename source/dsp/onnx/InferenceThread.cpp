@@ -16,7 +16,7 @@ InferenceThread::~InferenceThread() {
 
 void InferenceThread::prepare(const juce::dsp::ProcessSpec &spec) {
     // allocate enough memory
-    receiveRingBuffer.initialise(1, (int) 2 * spec.sampleRate);
+    receiveRingBuffer.initialise(1, (int) 4 * spec.sampleRate);
     
     last_spec = spec;
     init = true;
