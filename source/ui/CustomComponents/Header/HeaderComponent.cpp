@@ -89,7 +89,7 @@ void HeaderComponent::resized() {
     inputGainSlider.setBounds(width * 1050 / 1400, height * 21 / 700, width * 73 / 1400, height * 24 / 700);
     labels.outputGainLabel.setBounds(width * 1125 / 1400, height * 21 / 700, width * 95 / 1400, height * 24 / 700);
     outputGainSlider.setBounds(width * 1225 / 1400, height * 21 / 700, width * 73 / 1400, height * 24 / 700);
-    detailButton.setBounds(width - (width * 80 / 1400), height * 24 / 700, width * 35 / 1400, height * 19 / 700);
+    detailButton.setBounds(width - (width * 80 / 1400), height * 24 / 700, width * 1.3f * 35 / 1400, height * 1.3f * 19 / 700);
     scycloneTypoSection.setBounds(width * 49.f / 1400, height * 21.f / 700, width * 127.f / 1400, height * 30.f / 700);
     neuralTransferTypoSection.setBounds(width * 197.f / 1400, height * 21.f / 700, width * 121.f / 1400, height * 30.f / 700);
 }
