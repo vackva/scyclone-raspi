@@ -59,7 +59,7 @@ private:
 
     juce::AudioBuffer<float> processedBuffer;
     int maxModelCalcSize = 4096;
-    int modelInputSize = 16384;
+    int modelInputSize = 65536;
     std::atomic<bool> inferenceEnabled {false};
     RingBuffer receiveRingBuffer;
 

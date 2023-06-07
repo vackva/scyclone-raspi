@@ -16,7 +16,7 @@ InferenceThread::~InferenceThread() {
 
 void InferenceThread::prepare(const juce::dsp::ProcessSpec &spec) {
     // allocate enough memory
-    receiveRingBuffer.initialise(1, (int) spec.sampleRate);
+    receiveRingBuffer.initialise(1, (int) 2 * spec.sampleRate);
     
     last_spec = spec;
     init = true;
@@ -42,7 +42,6 @@ void InferenceThread::sendAudio(juce::AudioBuffer<float> &buffer) {
 }
 
 void InferenceThread::run() {
-
     auto start = std::chrono::high_resolution_clock::now();
 
     //process
@@ -71,13 +70,15 @@ void InferenceThread::run() {
     const std::array<const char *, 1> inputNames = {inputName};
     const std::array<const char *, 1> outputNames = {outputName};
 
-    if (inferenceEnabled) {
+    if (inferenceEnabled.load()) {
         // run inference
         try {
             session.Run(runOptions, inputNames.data(), inputTensor.get(), 1, outputNames.data(), outputTensor.get(), 1);
         } catch (Ort::Exception &e) {
             std::cout << e.what() << std::endl;
         }
+        std::cout << "enabled" << std::endl;
+
     }
 
 
@@ -87,7 +88,7 @@ void InferenceThread::run() {
 
     // std::cout << duration.count() << "ms" << std::endl;
 
-    if (inferenceEnabled) {
+    if (inferenceEnabled.load()) {
         for (int i = 0; i < processedBuffer.getNumSamples(); ++i) {
             processedBuffer.setSample(0, i, onnxOutputData[i]);
         }
@@ -181,7 +182,7 @@ void InferenceThread::loadInternalModel(RaveModel modelToLoad) {
                                    sessionOptions);
             break;
         case Djembe:
-            return;
+            inferenceEnabled.store(false);
             session = Ort::Session(env,
                                    BinaryData::funk_drums_onnx,
                                    BinaryData::funk_drums_onnxSize,

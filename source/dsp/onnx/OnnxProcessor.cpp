@@ -41,7 +41,7 @@ void OnnxProcessor::parameterChanged(const juce::String &parameterID, float newV
 }
 
 void OnnxProcessor::prepare(const juce::dsp::ProcessSpec &spec) {
-    receiveRingBuffer.initialise(1, (int) spec.sampleRate);
+    receiveRingBuffer.initialise(1, (int) 2 * spec.sampleRate);
     monoBuffer.setSize(1, (int) spec.maximumBlockSize);
     inferenceThread.prepare(spec);
     inferenceCounter = 0;
