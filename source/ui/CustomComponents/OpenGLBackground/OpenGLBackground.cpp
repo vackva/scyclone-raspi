@@ -12,15 +12,15 @@
 OpenGLBackground::OpenGLBackground(juce::AudioProcessorValueTreeState& parameters, AudioPluginAudioProcessor& p) : processorRef(p), xyPad(parameters, p)
 {
     // Sets the OpenGL version to 3.2
-    openGLContext.setOpenGLVersionRequired (juce::OpenGLContext::OpenGLVersion::openGL3_2);
+    //openGLContext.setOpenGLVersionRequired (juce::OpenGLContext::OpenGLVersion::openGL3_2);
 
     // Set default 3D orientation for the draggable GUI tool
     draggableOrientation.reset ({ 0.0, 1.0, 0.0 });
 
     // Attach the OpenGL context
-    openGLContext.setRenderer (this);
-    openGLContext.attachTo (*this);
-    openGLContext.setContinuousRepainting (true); // Enable rendering
+    //openGLContext.setRenderer (this);
+    //openGLContext.attachTo (*this);
+    //openGLContext.setContinuousRepainting (false); // Enable rendering
 
     // Setup OpenGL GUI Overlay Label: Status of Shaders, compiler errors, etc.
     //addAndMakeVisible (openGLStatusLabel);
@@ -47,37 +47,38 @@ OpenGLBackground::OpenGLBackground(juce::AudioProcessorValueTreeState& parameter
 
 OpenGLBackground::~OpenGLBackground()
 {
-    openGLContext.setContinuousRepainting (false);
-    openGLContext.detach();
+    //openGLContext.setContinuousRepainting (false);
+    //openGLContext.detach();
 }
 
 // OpenGLRenderer Callbacks ================================================
 void OpenGLBackground::newOpenGLContextCreated()
 {
+    return;
     compileOpenGLShaderProgram();
     
     vertices = ShapeVertices::generateSquare(); // Setup vertices
     
     // Generate opengl vertex objects ==========================================
-    openGLContext.extensions.glGenVertexArrays(1, &VAO); // Vertex Array Object
-    openGLContext.extensions.glGenBuffers (1, &VBO);     // Vertex Buffer Object
+    //openGLContext.extensions.glGenVertexArrays(1, &VAO); // Vertex Array Object
+    //openGLContext.extensions.glGenBuffers (1, &VBO);     // Vertex Buffer Object
     
     
     // Bind opengl vertex objects to data ======================================
-    openGLContext.extensions.glBindVertexArray (VAO);
+    //openGLContext.extensions.glBindVertexArray (VAO);
 //
 //    // Fill VBO buffer with vertices array
-    openGLContext.extensions.glBindBuffer (juce::gl::GL_ARRAY_BUFFER, VBO);
-    openGLContext.extensions.glBufferData (juce::gl::GL_ARRAY_BUFFER,
-                                           sizeof (GLfloat) * vertices.size() * 3,
-                                           vertices.data(),
-                                           juce::gl::GL_STATIC_DRAW);
+    //openGLContext.extensions.glBindBuffer (juce::gl::GL_ARRAY_BUFFER, VBO);
+    //openGLContext.extensions.glBufferData (juce::gl::GL_ARRAY_BUFFER,
+                                           //sizeof (GLfloat) * vertices.size() * 3,
+                                           //vertices.data(),
+                                           //juce::gl::GL_STATIC_DRAW);
 //
 //
 //    // Define that our vertices are laid out as groups of 3 GLfloats
-    openGLContext.extensions.glVertexAttribPointer (0, 3, juce::gl::GL_FLOAT, juce::gl::GL_FALSE,
-                                                    3 * sizeof (GLfloat), NULL);
-    openGLContext.extensions.glEnableVertexAttribArray (0);
+    //openGLContext.extensions.glVertexAttribPointer (0, 3, juce::gl::GL_FLOAT, juce::gl::GL_FALSE,
+                                                    //3 * sizeof (GLfloat), NULL);
+    //openGLContext.extensions.glEnableVertexAttribArray (0);
     
     
     // Optional OpenGL styling commands ========================================
@@ -95,6 +96,7 @@ void OpenGLBackground::openGLContextClosing()
 
 void OpenGLBackground::renderOpenGL()
 {
+    return;
     jassert (juce::OpenGLHelpers::isContextActive());
     
     // Scale viewport
@@ -127,9 +129,9 @@ void OpenGLBackground::renderOpenGL()
     
 //
 //    // Draw Vertices
-    openGLContext.extensions.glBindVertexArray (VAO);
+    //openGLContext.extensions.glBindVertexArray (VAO);
     juce::gl::glDrawArrays (juce::gl::GL_TRIANGLES, 0, (int) vertices.size());
-    openGLContext.extensions.glBindVertexArray (0);
+    //openGLContext.extensions.glBindVertexArray (0);
 }
 
 // JUCE Component Callbacks ====================================================
@@ -203,6 +205,7 @@ void OpenGLBackground::handleAsyncUpdate()
 // OpenGL Related Member Functions =============================================
 void OpenGLBackground::compileOpenGLShaderProgram()
 {
+    return;
     std::unique_ptr<juce::OpenGLShaderProgram> shaderProgramAttempt
         = std::make_unique<juce::OpenGLShaderProgram> (openGLContext);
 

@@ -61,7 +61,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     setResizable(false, true);
     setResizeLimits(800, 800/ratio, 1400, 1400/ratio);
     getConstrainer()->setFixedAspectRatio(2);
-    setSize (1400, 700);
+    setSize (800, 400);
 
     // dirty work around to make the blobs appear correctly from the beginning
     auto fadeParam = parameters.getParameter(PluginParameters::FADE_ID);
