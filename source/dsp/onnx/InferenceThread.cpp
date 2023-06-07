@@ -176,6 +176,7 @@ void InferenceThread::loadInternalModel(RaveModel modelToLoad) {
         default:
             //not implemented
         case FunkDrum:
+            inferenceEnabled.store(true);
             session = Ort::Session(env,
                                    BinaryData::funk_drums_onnx,
                                    BinaryData::funk_drums_onnxSize,
