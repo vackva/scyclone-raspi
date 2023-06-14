@@ -31,7 +31,7 @@ OpenGLBackground::OpenGLBackground(juce::AudioProcessorValueTreeState& parameter
     xyPad.onButtonMove = [this](float x, float y, int no){this->xyButtonMoved(x,y,no);};
     xyPad.onModelMixChange = [this](float modelMix){this->xyModelMixChanged(modelMix);};
     SetJuceLabels();
-    addAndMakeVisible(openGlTextureComponent);
+    //addAndMakeVisible(openGlTextureComponent);
     
     processorRef.setLevelType(PEAK);
 
@@ -158,7 +158,7 @@ void OpenGLBackground::resized () {
     int openGLStatusLabelRemoved = getHeight() * 75 / 700;
 
     openGLStatusLabel.setBounds(getLocalBounds().reduced(openGLStatusLabelReduced).removeFromTop(openGLStatusLabelRemoved));
-    openGlTextureComponent.setBounds(getLocalBounds());
+    //openGlTextureComponent.setBounds(getLocalBounds());
 
     int attackX = getWidth() * 50 / 700;
     int attackY = getHeight() * 335 / 648;

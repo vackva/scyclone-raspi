@@ -188,10 +188,10 @@ private:
 
 
     inline static juce::ValueTreePropertyWithDefault network1NameProperty = juce::ValueTreePropertyWithDefault(notAutomatableParameters, NETWORK1_NAME_ID,
-                                                                                                               nullptr, "Funk");
+                                                                                                               nullptr, "Network");
 
     inline static juce::ValueTreePropertyWithDefault network2NameProperty = juce::ValueTreePropertyWithDefault(notAutomatableParameters, NETWORK1_NAME_ID,
-                                                                                                               nullptr, "Djembe");
+                                                                                                               nullptr, "Input");
 };
 
 #endif //AUDIO_PLUGIN_EXAMPLE_PLUGINPARAMETERS_H

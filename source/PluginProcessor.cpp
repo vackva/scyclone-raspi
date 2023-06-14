@@ -23,8 +23,8 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
         processorCompressor(parameters)
 {
 
-    network1Name = "Funk";
-    network2Name = "Djembe";
+    network1Name = "Network";
+    network2Name = "Input";
 
     for (auto & parameterID : PluginParameters::getPluginParameterList()) {
         parameters.addParameterListener(parameterID, this);
@@ -193,6 +193,7 @@ bool AudioPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
                                               juce::MidiBuffer& ) {
 
+    if (getTotalNumInputChannels() != 2 && getTotalNumOutputChannels() != 2) return;
     dryWetMixer.setDrySamples(buffer);
 
     processorGain.processInputBlock(buffer);
