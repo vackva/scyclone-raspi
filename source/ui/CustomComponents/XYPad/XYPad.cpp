@@ -41,17 +41,17 @@ XYPad::XYPad(juce::AudioProcessorValueTreeState& parameters, AudioPluginAudioPro
 
 
     addAndMakeVisible(knob1);
-    addAndMakeVisible(arrow1);
-    addAndMakeVisible(network1SelectButton);
-	addAndMakeVisible(network1GrainButton);
-	addAndMakeVisible(network1OnOffButton);
+    //addAndMakeVisible(arrow1);
+    //addAndMakeVisible(network1SelectButton);
+	//addAndMakeVisible(network1GrainButton);
+	//addAndMakeVisible(network1OnOffButton);
     setArrowAndButtonsVisible(false, 1);
 
 	addAndMakeVisible(knob2);
-	addAndMakeVisible(arrow2);
-	addAndMakeVisible(network2SelectButton);
-	addAndMakeVisible(network2GrainButton);
-	addAndMakeVisible(network2OnOffButton);
+	//addAndMakeVisible(arrow2);
+	//addAndMakeVisible(network2SelectButton);
+	//addAndMakeVisible(network2GrainButton);
+	//addAndMakeVisible(network2OnOffButton);
     setArrowAndButtonsVisible(false, 2);
 
     // find and connect audio parameters to automatable gui objects
