@@ -87,9 +87,6 @@ void CustomSliderComponent::updateValueLabel() {
 void CustomSliderComponent::resized() {
     auto area = getLocalBounds();
 
-    std::cout << "getWidth = " << getWidth() << std::endl;
-    std::cout << "getHeight = " << getHeight() << std::endl;
-
     float fontSize = (getHeight() < 450) ? 13.5f : 16.5f;
     float fontSizeLabel = (getHeight() < 450) ? 13.5f : 16.5f;
 
@@ -97,8 +94,6 @@ void CustomSliderComponent::resized() {
         fontSize = 13.5f * (float) getHeight() / 250.f;
         fontSizeLabel = 13.5f * (float) getHeight() / 250.f;
     }
-
-    std::cout << "fontSize = " << fontSize << std::endl;
 
     const int headerHeight = getHeight() / (int) fontSize + 10;
 

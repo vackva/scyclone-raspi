@@ -7,6 +7,8 @@
 InferenceThread::InferenceThread(RaveModel raveModel) : juce::Thread("OnnxInference"), session(nullptr), currentLevel(raveModel){
     modelInputSizeChanged(modelInputSize);
     setInternalModel();
+    if(raveModel == Djembe) inferenceEnabled.store(false);
+
 }
 
 InferenceThread::~InferenceThread() {
@@ -77,8 +79,6 @@ void InferenceThread::run() {
         } catch (Ort::Exception &e) {
             std::cout << e.what() << std::endl;
         }
-        std::cout << "enabled" << std::endl;
-
     }
 
 
@@ -105,7 +105,9 @@ void InferenceThread::run() {
 }
 
 void InferenceThread::setExternalModel(juce::File modelPath) {
-    loadExternalModel(modelPath);
+    //loadExternalModel(modelPath);
+    currentLevel = (currentLevel == FunkDrum) ? Djembe : FunkDrum;
+    loadInternalModel(currentLevel);
 }
 
 void InferenceThread::modelInputSizeChanged(int newModelInputSize) {
@@ -183,10 +185,9 @@ void InferenceThread::loadInternalModel(RaveModel modelToLoad) {
                                    sessionOptions);
             break;
         case Djembe:
-            inferenceEnabled.store(false);
             session = Ort::Session(env,
-                                   BinaryData::jazz_onnx,
-                                   BinaryData::jazz_onnxSize,
+                                   BinaryData::vctk_onnx,
+                                   BinaryData::vctk_onnxSize,
                                    sessionOptions);
             break;
     }

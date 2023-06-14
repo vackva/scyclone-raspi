@@ -52,7 +52,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginParameters::createPara
                                                                 false));
     params.push_back(std::make_unique<juce::AudioParameterBool>(GRAIN_ON_OFF_NETWORK1_ID,
                                                                 GRAIN_ON_OFF_NETWORK1_NAME,
-                                                                false));
+                                                                true));
     params.push_back(std::make_unique<juce::AudioParameterBool>(ON_OFF_NETWORK1_ID,
                                                                 ON_OFF_NETWORK1_NAME,
                                                                 true));
@@ -60,12 +60,14 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginParameters::createPara
     params.push_back(std::make_unique<juce::AudioParameterBool>(SELECT_NETWORK2_ID,
                                                                 SELECT_NETWORK2_NAME,
                                                                 false));
+
     params.push_back(std::make_unique<juce::AudioParameterBool>(GRAIN_ON_OFF_NETWORK2_ID,
                                                                 GRAIN_ON_OFF_NETWORK2_NAME,
-                                                                false));
+                                                                true));
+
     params.push_back(std::make_unique<juce::AudioParameterBool>(ON_OFF_NETWORK2_ID,
                                                                 ON_OFF_NETWORK2_NAME,
-                                                                false));
+                                                                true));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>(GRAIN_NETWORK1_INTERVAL_ID,
                                                                  GRAIN_NETWORK1_INTERVAL_NAME,
@@ -88,7 +90,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginParameters::createPara
     params.push_back(std::make_unique<juce::AudioParameterFloat>(GRAIN_NETWORK1_MIX_ID,
                                                                  GRAIN_NETWORK1_MIX_NAME,
                                                                  dryWetRange,
-                                                                 0.25f,
+                                                                 0.0f,
                                                                  percentage_attributes));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>(GRAIN_NETWORK2_INTERVAL_ID,
@@ -112,7 +114,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginParameters::createPara
     params.push_back(std::make_unique<juce::AudioParameterFloat>(GRAIN_NETWORK2_MIX_ID,
                                                                  GRAIN_NETWORK2_MIX_NAME,
                                                                  dryWetRange,
-                                                                 0.25f,
+                                                                 0.0f,
                                                                  percentage_attributes));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>(FADE_ID,
@@ -172,7 +174,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginParameters::createPara
 juce::ValueTree PluginParameters::createNotAutomatableParameterLayout()
 {
     notAutomatableParameters = juce::ValueTree("Settings");
-    notAutomatableParameters.setProperty(ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, juce::var(false), nullptr);
+    notAutomatableParameters.setProperty(ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, juce::var(true), nullptr);
     notAutomatableParameters.setProperty(NETWORK1_NAME_ID, juce::var("Network"), nullptr);
     notAutomatableParameters.setProperty(NETWORK2_NAME_ID, juce::var("Input"), nullptr);
     return notAutomatableParameters;

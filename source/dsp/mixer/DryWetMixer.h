@@ -22,7 +22,7 @@ public:
 
 
 private:
-    juce::dsp::DryWetMixer<float> mixer {48000};
+    juce::dsp::DryWetMixer<float> mixer {96000};
     float dryWetProportion = 0.0f;
 };
 

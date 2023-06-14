@@ -64,10 +64,6 @@ AdvancedParameterControl::~AdvancedParameterControl()
 
 void AdvancedParameterControl::resized()
 {
-
-    std::cout << "getWith: " << getWidth() << std::endl; //599
-    std::cout << "getHeight: " << getHeight() << std::endl; // 600
-
     sliderWidth = 73 * getWidth() / 599;
     sliderHeight = 250 * getHeight() / 600;
     sliderDistance = 2 * getWidth() / 599;

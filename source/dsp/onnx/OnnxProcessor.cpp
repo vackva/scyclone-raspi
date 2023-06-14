@@ -21,6 +21,9 @@ OnnxProcessor::OnnxProcessor(juce::AudioProcessorValueTreeState &apvts, int no, 
 }
 
 void OnnxProcessor::parameterChanged(const juce::String &parameterID, float newValue) {
+
+    if (parameterID == PluginParameters::SELECT_NETWORK1_ID) std::cout << "Param" << std::endl;
+
     if (parameterID == PluginParameters::SELECT_NETWORK1_ID && number == 1) {
         auto newValueBool = (bool) newValue;
         if (!newValueBool) {
@@ -84,7 +87,7 @@ void OnnxProcessor::processOutput(juce::AudioBuffer<float> &buffer, const int nu
 }
 
 void OnnxProcessor::loadExternalModel(juce::File file) {
-    onOnnxModelLoad(true, file.getFileNameWithoutExtension());
+    onOnnxModelLoad(true, "Network");
     inferenceThread.setExternalModel(file);
 }
 

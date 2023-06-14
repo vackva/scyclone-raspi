@@ -29,7 +29,6 @@ void RingBuffer::reset() {
 void RingBuffer::pushSample(float sample, int channel) {
     if (std::isnan(sample)){
         sample = 0.f;
-//        std::cout << "Sample is nan! push" << std::endl; //DBG
     }
     buffer.setSample(channel, writePos[channel], sample);
 
@@ -49,16 +48,12 @@ float RingBuffer::popSample(int channel) {
         readPos[channel] = 0;
     }
     if (std::isnan(sample)){
-//        std::cout << "Sample is nan! pop" << std::endl; //DBG
         return 0.f;
     }
     else return sample;
 }
 
 int RingBuffer::getAvailableSamples(int channel, bool debug) {
-    if (debug) {
-        std::cout << "getAvailableSamples["<< readPos[channel] << ", " << writePos[channel] << "]: ";
-    }
     int returnValue;
 
     if (readPos[channel] <= writePos[channel]) {

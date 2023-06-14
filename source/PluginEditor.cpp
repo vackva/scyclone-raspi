@@ -4,7 +4,8 @@
 
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p, juce::AudioProcessorValueTreeState& parameters)
-    : AudioProcessorEditor (&p), apvts(parameters), processorRef (p), transientViewer(p), openGLBackground(parameters, p), advancedParameterControl(parameters), parameterControl(parameters)
+    : AudioProcessorEditor (&p), apvts(parameters), processorRef (p), transientViewer(p), openGLBackground(parameters, p), advancedParameterControl(parameters), parameterControl(parameters), logoButton("logoButton",
+                                                                                                                                                                                                            juce::DrawableButton::ButtonStyle::ImageFitted)
 {
     juce::ignoreUnused (processorRef);
 
@@ -68,6 +69,12 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     auto fadeStatus = fadeParam->getValue();
     fadeParam->setValueNotifyingHost(0.5f*fadeStatus);
     fadeParam->setValueNotifyingHost(fadeStatus);
+
+    addAndMakeVisible(logoButton);
+    logoButton.setImages(logo.get());
+    logoButton.onClick = [this] () {
+        processorRef.loadExternalModel(juce::File{""}, 1);
+    };
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
@@ -95,9 +102,10 @@ void AudioPluginAudioProcessorEditor::resized()
     auto padSection = r.removeFromLeft(width/2);
     auto miniMapSection = r.removeFromLeft(static_cast<int>(width*0.12571f));
 
-
     r.removeFromLeft(static_cast<int>(width*0.03214));
     auto sliderSection = r;
+
+    logoButton.setBounds(width/2, 10, 25, 25);
 
     juce::ignoreUnused(headerSection, miniMapSection, sliderSection);
 

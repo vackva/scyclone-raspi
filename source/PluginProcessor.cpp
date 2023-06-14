@@ -51,6 +51,9 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
         }
     };
 
+    advancedParameterControlVisible.referTo(parameters.state.getChildWithName("Settings")
+                                                    .getPropertyAsValue(PluginParameters::ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, nullptr));
+
     setInitialMuteParameters();
     initialiseRnbo();
 }
@@ -245,7 +248,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 //    dryWetMixer.setDrySamples(buffer);
 //    stereoToMono(monoBuffer, buffer);
 //
-//    processorGain.processInputBlock(monoBuffer);
+//    processorGain.pro cessInputBlock(monoBuffer);
 //
 //    network1Buffer.makeCopyOf(monoBuffer);
 //    network2Buffer.makeCopyOf(monoBuffer);
