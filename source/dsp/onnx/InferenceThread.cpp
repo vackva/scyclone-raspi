@@ -180,14 +180,14 @@ void InferenceThread::loadInternalModel(RaveModel modelToLoad) {
         case FunkDrum:
             inferenceEnabled.store(true);
             session = Ort::Session(env,
-                                   BinaryData::vctk_onnx,
-                                   BinaryData::vctk_onnxSize,
+                                   BinaryData::djembe_onnx,
+                                   BinaryData::djembe_onnxSize,
                                    sessionOptions);
             break;
         case Djembe:
             session = Ort::Session(env,
-                                   BinaryData::vctk_onnx,
-                                   BinaryData::vctk_onnxSize,
+                                   BinaryData::djembe_onnx,
+                                   BinaryData::djembe_onnxSize,
                                    sessionOptions);
             break;
     }
