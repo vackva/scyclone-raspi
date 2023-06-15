@@ -20,7 +20,7 @@ public:
 
 private:
     CustomSliderComponent fadeSlider {"Fade", crossfade};
-    CustomSliderComponent dynamicSlider {"Dynamic"};
+    CustomSliderComponent dynamicSlider {"Grain"};
     CustomSliderComponent mixSlider {"Mix"};
 
     juce::AudioProcessorValueTreeState& parameters;

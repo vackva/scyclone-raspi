@@ -186,8 +186,8 @@ void InferenceThread::loadInternalModel(RaveModel modelToLoad) {
             break;
         case Djembe:
             session = Ort::Session(env,
-                                   BinaryData::vctk_onnx,
-                                   BinaryData::vctk_onnxSize,
+                                   BinaryData::jazz_onnx,
+                                   BinaryData::jazz_onnxSize,
                                    sessionOptions);
             break;
     }

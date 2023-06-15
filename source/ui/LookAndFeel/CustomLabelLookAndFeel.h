@@ -23,6 +23,8 @@ public:
             auto alpha = label.isEnabled() ? 1.0f : 0.5f;
             const juce::Font font (getLabelFont (label));
 
+            font.withHeight(10);
+
             g.setColour (label.findColour (juce::Label::textColourId).withMultipliedAlpha (alpha));
             g.setFont (font);
 

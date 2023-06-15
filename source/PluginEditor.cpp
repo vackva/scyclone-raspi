@@ -4,8 +4,7 @@
 
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p, juce::AudioProcessorValueTreeState& parameters)
-    : AudioProcessorEditor (&p), apvts(parameters), processorRef (p), transientViewer(p), openGLBackground(parameters, p), advancedParameterControl(parameters), parameterControl(parameters), logoButton("logoButton",
-                                                                                                                                                                                                            juce::DrawableButton::ButtonStyle::ImageFitted)
+    : AudioProcessorEditor (&p), apvts(parameters), processorRef (p), transientViewer(p), openGLBackground(parameters, p), advancedParameterControl(parameters), parameterControl(parameters)
 {
     juce::ignoreUnused (processorRef);
 
@@ -70,11 +69,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     fadeParam->setValueNotifyingHost(0.5f*fadeStatus);
     fadeParam->setValueNotifyingHost(fadeStatus);
 
-    addAndMakeVisible(logoButton);
-    logoButton.setImages(logo.get());
-    logoButton.onClick = [this] () {
-        processorRef.loadExternalModel(juce::File{""}, 1);
-    };
+    addAndMakeVisible(dataset);
+    dataset.setText("Jazz", juce::dontSendNotification);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
@@ -105,7 +101,7 @@ void AudioPluginAudioProcessorEditor::resized()
     r.removeFromLeft(static_cast<int>(width*0.03214));
     auto sliderSection = r;
 
-    logoButton.setBounds(width/2, 10, 25, 25);
+    dataset.setBounds(width/2, 10, 50, 25);
 
     juce::ignoreUnused(headerSection, miniMapSection, sliderSection);
 

@@ -51,6 +51,8 @@ AudioPluginAudioProcessor::AudioPluginAudioProcessor()
         }
     };
 
+    fadeMixer.setMixingCurve(juce::dsp::DryWetMixingRule::balanced);
+
     advancedParameterControlVisible.referTo(parameters.state.getChildWithName("Settings")
                                                     .getPropertyAsValue(PluginParameters::ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, nullptr));
 
@@ -228,11 +230,6 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     grainDelay2.processBlock(network2Buffer);
     grain2DryWetMixer.setWetSamples(network2Buffer);
 
-    if (parameters.getRawParameterValue(PluginParameters::ON_OFF_NETWORK1_ID)->load() == 0.f)
-        network1Buffer.clear();
-    if (parameters.getRawParameterValue(PluginParameters::ON_OFF_NETWORK2_ID)->load() == 0.f)
-        network2Buffer.clear();
-
     monoBuffer.makeCopyOf(network1Buffer);
     fadeMixer.setDrySamples(network2Buffer);
     fadeMixer.setWetSamples(monoBuffer);
@@ -320,23 +317,23 @@ juce::AudioProcessorEditor* AudioPluginAudioProcessor::createEditor() {
 
 //==============================================================================
 void AudioPluginAudioProcessor::getStateInformation (juce::MemoryBlock& destData) {
-    auto state = parameters.copyState();
-    std::unique_ptr<juce::XmlElement> xml (state.createXml());
-    copyXmlToBinary (*xml, destData);
+//    auto state = parameters.copyState();
+//    std::unique_ptr<juce::XmlElement> xml (state.createXml());
+//    copyXmlToBinary (*xml, destData);
 }
 
 void AudioPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes) {
-    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
-    if (xmlState != nullptr)
-        if (xmlState->hasTagName(parameters.state.getType())) {
-            parameters.replaceState(juce::ValueTree::fromXml(*xmlState));
-            advancedParameterControlVisible.referTo(parameters.state.getChildWithName("Settings")
-            .getPropertyAsValue(PluginParameters::ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, nullptr));
-            network1Name.referTo(parameters.state.getChildWithName("Settings")
-                                                            .getPropertyAsValue(PluginParameters::NETWORK1_NAME_ID, nullptr));
-            network2Name.referTo(parameters.state.getChildWithName("Settings")
-                                                            .getPropertyAsValue(PluginParameters::NETWORK2_NAME_ID, nullptr));
-        }
+//    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+//    if (xmlState != nullptr)
+//        if (xmlState->hasTagName(parameters.state.getType())) {
+//            parameters.replaceState(juce::ValueTree::fromXml(*xmlState));
+//            advancedParameterControlVisible.referTo(parameters.state.getChildWithName("Settings")
+//            .getPropertyAsValue(PluginParameters::ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, nullptr));
+//            network1Name.referTo(parameters.state.getChildWithName("Settings")
+//                                                            .getPropertyAsValue(PluginParameters::NETWORK1_NAME_ID, nullptr));
+//            network2Name.referTo(parameters.state.getChildWithName("Settings")
+//                                                            .getPropertyAsValue(PluginParameters::NETWORK2_NAME_ID, nullptr));
+//        }
 }
 
 void AudioPluginAudioProcessor::parameterChanged(const juce::String &parameterID, float newValue) {

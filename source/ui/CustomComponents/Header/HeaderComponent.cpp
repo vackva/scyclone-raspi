@@ -21,7 +21,7 @@ HeaderComponent::HeaderComponent(AudioPluginAudioProcessor &p, juce::AudioProces
     labels.neutralTransfer.setColour(juce::Label::ColourIds::textColourId, juce::Colour::fromString(ColorPallete::TEXT2));
     //addAndMakeVisible(labels.neutralTransfer);
 
-    labels.inputGainLabel.setText("Input Gain", juce::dontSendNotification);
+    labels.inputGainLabel.setText("Input", juce::dontSendNotification);
     labels.inputGainLabel.setFont(CustomFontLookAndFeel::getCustomFont().withHeight(15.f));
     labels.inputGainLabel.setJustificationType(juce::Justification::centredRight);
     labels.inputGainLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colour::fromString(ColorPallete::TEXT2));
@@ -34,7 +34,7 @@ HeaderComponent::HeaderComponent(AudioPluginAudioProcessor &p, juce::AudioProces
     inputGainSlider.setTextBoxIsEditable(false);
     addAndMakeVisible(inputGainSlider);
 
-    labels.outputGainLabel.setText("Output Gain", juce::dontSendNotification);
+    labels.outputGainLabel.setText("Output", juce::dontSendNotification);
     labels.outputGainLabel.setFont(CustomFontLookAndFeel::getCustomFont().withHeight(15.f));
     labels.outputGainLabel.setJustificationType(juce::Justification::centredRight);
     labels.outputGainLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colour::fromString(ColorPallete::TEXT2));

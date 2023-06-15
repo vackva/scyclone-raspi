@@ -12,7 +12,7 @@ ParameterControl::ParameterControl(juce::AudioProcessorValueTreeState &parameter
     fadeSlider.setDoubleClickReturnValue(0.0);
 
     addAndMakeVisible(dynamicSlider);
-    dynamicSlider.addSliderAttachment(parameters, PluginParameters::COMP_DRY_WET_ID);
+    dynamicSlider.addSliderAttachment(parameters, PluginParameters::GRAIN_NETWORK1_MIX_ID);
     dynamicSlider.setDoubleClickReturnValue(0.0);
 
     addAndMakeVisible(mixSlider);

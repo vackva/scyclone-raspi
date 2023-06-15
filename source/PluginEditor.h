@@ -44,8 +44,7 @@ private:
 
     std::unique_ptr<juce::FileChooser> fc;
 
-    std::unique_ptr<juce::Drawable> logo = juce::Drawable::createFromImageData(BinaryData::Logo_svg, BinaryData::Logo_svgSize);
-    juce::DrawableButton logoButton;
+    juce::Label dataset;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };

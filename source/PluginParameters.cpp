@@ -174,7 +174,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginParameters::createPara
 juce::ValueTree PluginParameters::createNotAutomatableParameterLayout()
 {
     notAutomatableParameters = juce::ValueTree("Settings");
-    notAutomatableParameters.setProperty(ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, juce::var(true), nullptr);
+    notAutomatableParameters.setProperty(ADVANCED_PARAMETER_CONTROL_VISIBLE_ID, juce::var(false), nullptr);
     notAutomatableParameters.setProperty(NETWORK1_NAME_ID, juce::var("Network"), nullptr);
     notAutomatableParameters.setProperty(NETWORK2_NAME_ID, juce::var("Input"), nullptr);
     return notAutomatableParameters;
