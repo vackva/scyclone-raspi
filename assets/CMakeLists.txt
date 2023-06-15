@@ -1,6 +1,6 @@
 juce_add_binary_data(BinaryData SOURCES
         #models/jazz.onnx
-        models/djembe.onnx
+        models/cats.onnx
 
         pictures/Gradient.png
         pictures/Gradient_OpenGL.png
