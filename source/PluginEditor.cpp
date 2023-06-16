@@ -70,7 +70,7 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     fadeParam->setValueNotifyingHost(fadeStatus);
 
     addAndMakeVisible(dataset);
-//    dataset.setText("Cats", juce::dontSendNotification);
+    dataset.setText("Dogs", juce::dontSendNotification);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
